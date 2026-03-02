@@ -5,6 +5,13 @@ function getRandomURL() {
 }
 export function add(state,action){
     const url = action.data;
+    
+    // Validar si la URL ya existe
+    const urlExists = state.items.some(item => item.url === url);
+    if (urlExists) {
+        return state; // No agregar si ya existe
+    }
+    
     const shortUrl = getRandomURL();
     const temp = [...state.items]
     const newItem = {

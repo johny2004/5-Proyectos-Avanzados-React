@@ -31,30 +31,40 @@ export default function Tiktok() {
   }
 
   return (
-    <div>
-      <div>
-        <div>
-          {isLoading ? (
-            <h1>Cargando...</h1>
-          ) : (
-            <div>
-              {" "}
-              <h1>Tiktok</h1>{" "}
-            </div>
-          )}
+    <div className="tiktokApp">
+      <div className="tiktokHeader">
+        <h1 className="tiktokTitle">🎵 TikTok Clone</h1>
+        {isLoading && <div className="loadingIndicator">Cargando...</div>}
+      </div>
+
+      <div className="tiktokMainContent">
+        <div className="videoCounter">
+          {items.length > 0 && `${index + 1} / ${items.length}`}
         </div>
-        <button disabled={isLoading} onClick={() => previousVideo()}>
-          Previous Video
-        </button>
-        <button disabled={isLoading} onClick={() => nextVideo()}>
-          Next Video
-        </button>
+
+        <div className="navigationButtons">
+          <button 
+            className="navButton prevButton" 
+            disabled={isLoading || index === 0} 
+            onClick={() => previousVideo()}
+          >
+            <span className="buttonIcon">⬆</span>
+            <span className="buttonText">Anterior</span>
+          </button>
+          <button 
+            className="navButton nextButton" 
+            disabled={isLoading} 
+            onClick={() => nextVideo()}
+          >
+            <span className="buttonIcon">⬇</span>
+            <span className="buttonText">Siguiente</span>
+          </button>
+        </div>
 
         <div className="tiktoksContainerView">
-          <div className="tiktoksContainer" style={{transform: `translateY(${-1 * index * 960 + "px"})`}}>
+          <div className="tiktoksContainer" style={{transform: `translateY(${-1 * index * 720 + "px"})`}}>
             {items?.map((item,i) => (
                  <TiktokVideo key={item.id} item={item} current={index === i} />
-              
             ))}
           </div>
         </div>

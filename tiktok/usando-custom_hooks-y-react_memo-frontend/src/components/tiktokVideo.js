@@ -22,8 +22,8 @@ export default function TiktokVideo({ item, current }) {
             {item.type === "youtube" ? (
                 <iframe 
                     ref={ref}
-                    width="500" 
-                    height="960"
+                    width="400" 
+                    height="720"
                     src={`${item.url}&autoplay=${current ? 1 : 0}&mute=1`}
                     title={item.title}
                     frameBorder="0"
@@ -33,8 +33,8 @@ export default function TiktokVideo({ item, current }) {
             ) : item.type === "tiktok" ? (
                 <iframe 
                     ref={ref}
-                    width="500" 
-                    height="960"
+                    width="400" 
+                    height="720"
                     src={item.url}
                     title={item.title}
                     frameBorder="0"
@@ -42,7 +42,7 @@ export default function TiktokVideo({ item, current }) {
                     allowFullScreen
                 />
             ) : (
-                <video ref={ref} width="500px" height="960" muted loop playsInline>
+                <video ref={ref} width="400" height="720" muted loop playsInline>
                     <source src={item.url} type="video/mp4" />
                 </video>
             )}
